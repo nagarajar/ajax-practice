@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" rel="stylesheet"/>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/todos",
+                method: "GET",
+                dataType: "json",
+                success: function(data){
+                $("#datatable").dataTable({
+                    data: data,
+                    // sort: false,
+                    // searching: false,
+                    // paging: false,
+                    columns: [
+                        {'data': 'userId'},
+                        {'data': 'id'},
+                        {'data': 'title'},
+                        {'data': 'completed'}
+                    ]
+                })
+            }
+
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- <div style="width: 1080px; padding: 10px; border: 1px solid black; "> -->
+    <div>
+        <table id="datatable">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Completed</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+</html>
